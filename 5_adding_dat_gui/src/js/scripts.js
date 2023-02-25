@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
-
+import * as dat from 'dat.gui';
 
 // Renderer, Scene and Camera setup
 const renderer = new THREE.WebGLRenderer();
@@ -66,6 +66,18 @@ const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 
 sphere.position.set(-10, 10, 0)
+
+
+
+// Code for color pallete
+const gui = new dat.GUI();
+const options = {
+    sphereColor: '#ffea00'
+}
+gui.addColor(options, 'sphereColor').onChange(function(e){
+    sphere.material.color.set(e);
+});
+
 
 // Adding rotaion to the box
 function animate(){
