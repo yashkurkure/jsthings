@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "4_bouncing_sphere_angular": {
+    "6_color_selector": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/4_bouncing_sphere_angular",
+            "outputPath": "dist/6_color_selector",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "4_bouncing_sphere_angular:build:production"
+              "browserTarget": "6_color_selector:build:production"
             },
             "development": {
-              "browserTarget": "4_bouncing_sphere_angular:build:development"
+              "browserTarget": "6_color_selector:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "4_bouncing_sphere_angular:build"
+            "browserTarget": "6_color_selector:build"
           }
         },
         "test": {

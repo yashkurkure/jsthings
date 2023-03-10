@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = '4_bouncing_sphere_angular';
+  title = '6_color_selector';
 }
