@@ -14,3 +14,6 @@ The canvas is setup to animate a bouncing sphere. Initally the sphere's color is
 Refer to the [Add Services](https://angular.io/tutorial/tour-of-heroes/toh-pt4) tutorial by Angular to create a service using Angular CLI.
 
 The service you create can then be injected into the classes of the components that want to subscribe to it. The component can subscribe/listen to changes in data stored in the sevice. The component can also update the data in the service if the service exposes a method to do so.
+
+## GIF
+![Alt Text](https://github.com/yashkurkure/threejs/blob/master/6_color_selector/res/out.gif?raw=true)
