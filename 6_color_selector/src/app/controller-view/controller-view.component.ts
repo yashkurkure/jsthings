@@ -14,11 +14,13 @@ export class ControllerViewComponent implements OnInit{
     constructor(private data: DataService) {}
 
     ngOnInit(): void {
+        // Subscribe to the data service.
         this.data.currentColor.subscribe(color=>this.color = color);
     }
 
 
     toRed(){
+        // Update the data in the data service.
         this.data.changeColor(0xFF0000)
     }
 

@@ -1,27 +1,16 @@
-# 6ColorSelector
+# Notes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+This example shows:
+1. Communicating between Angular components using a Data Service
+2. Displaying WebGL Grpahics
+3. Updating scenes that WebGL renderes from another component
 
-## Development server
+The project consists a canvas and a 3 buttons `Red`, `Green` and `Blue`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The canvas is part of the `canvas-box` component and the buttons are part of the `controller-view` component.
 
-## Code scaffolding
+The canvas is setup to animate a bouncing sphere. Initally the sphere's color is Red. When the user presses the buttons, the sphere's color is changed to the desirted color. This is done using the `DataService` defined in `data.service.js`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Refer to the [Add Services](https://angular.io/tutorial/tour-of-heroes/toh-pt4) tutorial by Angular to create a service using Angular CLI.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The service you create can then be injected into the classes of the components that want to subscribe to it. The component can subscribe/listen to changes in data stored in the sevice. The component can also update the data in the service if the service exposes a method to do so.

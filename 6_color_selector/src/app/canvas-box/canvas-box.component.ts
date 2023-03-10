@@ -10,53 +10,76 @@ import {DataService} from '../data.service';
 })
 export class CanvasBoxComponent implements OnInit {
 
+    // The color of the sphere.
     color: THREE.ColorRepresentation = 0x000000;
+
+    // The sphere in the scene.
     sphere!: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
 
-    constructor(private data: DataService) {}
+    // The plane in the scene.
+    plane!: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
 
+    // Canvas that WebGL draws on.
+    canvas!: HTMLElement | null;
+
+    // WebGL Renderer.
+    renderer!: THREE.WebGLRenderer;
+
+    // The scene.
+    scene!: THREE.Scene;
+
+    // The camera that captures the scene.
+    camera!: THREE.PerspectiveCamera;
+
+    // Orbit controls allow controlling the camera.
+    orbit!: OrbitControls;
+
+    // Constructor.
+    constructor(private data: DataService) {
+    }
+
+    //On Initialization of the component.
     ngOnInit(): void {
-     this.data.currentColor.subscribe(color=>{
-        this.color = color;
-        this.sphere.material.color = new THREE.Color(color)
-    });
-     this.createThreeJsBox();
-    }
 
-    intializePlaneGeometry(){
+        // Setup for WebGL.
+        this.WebGLSetup();
 
-    }
+        // Add things to the scene.
+        this.addToScene();
 
-    intializeSpehereGeometry(){
-
-    }
-   
-    createThreeJsBox(): void {
-
-        // Setup
-        const canvas = document.getElementById('canvas-box');
-        const scene = new THREE.Scene();
-        if (!canvas) {
-            return;
-            }
-        const renderer = new THREE.WebGLRenderer({
-            canvas: canvas,
+        // Subscribe to the data service.
+        // This allows the color of the sphere to be changed.
+        this.data.currentColor.subscribe(color=>{
+            this.color = color;
+            this.sphere.material.color = new THREE.Color(color)
         });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        const camera = new THREE.PerspectiveCamera(
+
+        // Start the animation.
+        this.startAnimation();
+    }
+
+
+    // Setup the scene.
+    WebGLSetup(){
+        this.canvas = document.getElementById('canvas-box');
+        this.scene = new THREE.Scene();
+        this.renderer = new THREE.WebGLRenderer({
+            canvas: this.canvas!,
+        });
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
             0.1,
             1000
         );
 
-        // Instantiate the OribitControls class.
-        const orbit = new OrbitControls(camera, renderer.domElement);
+        this.camera.position.set(-10,30,30);
+        this.orbit = new OrbitControls(this.camera, this.renderer.domElement);
+    }
 
-        camera.position.set(-10,30,30);
-        orbit.update();
-
-        // NEW: Adding a plane to the scene
+    // Create the plane geometry.
+    intializePlaneGeometry() : THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> {
         const planeGeometry = new THREE.PlaneGeometry(
             30, // 1st dimension of the plane (x)
             30  // 2nd dimension of th plane (y)
@@ -66,43 +89,47 @@ export class CanvasBoxComponent implements OnInit {
             side: THREE.DoubleSide // Apply material to both sides of the plane
         });
         const plane = new THREE.Mesh(planeGeometry, PlaneMaterial);
-        scene.add(plane);
-
-        // NEW: rotating a plane
         plane.rotation.x = -0.5 * Math.PI;
+        return plane;
+    }
 
-        // NEW: Adding a gird helper
-        const girdHelper = new THREE.GridHelper(
-            30, // size of the grid
-        );
-        scene.add(girdHelper);
-
-        //NEW: Adding a sphere
+    // Create the sphere geometry.
+    intializeSphereGeometry() : THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>{
         const sphereGeometry = new THREE.SphereGeometry(4, 50, 50);
         const sphereMaterial = new THREE.MeshBasicMaterial({
             color: this.color,
             wireframe: true //Display as a wire frame
         });
-        this.sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-        scene.add(this.sphere);
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.set(0, 0, 0)
+        return sphere;
+    }
 
-        this.sphere.position.set(0, 0, 0)
+    // Adds the spehere and the plane to the scene.
+    addToScene(){
+        const plane = this.intializePlaneGeometry();
+        this.scene.add(plane);
 
-        const clock = new THREE.Clock();
-
+        this.sphere = this.intializeSphereGeometry();
+        this.scene.add(this.sphere);
+    }
+   
+    // Start the animation.
+    startAnimation(): void {
         let step = 0;
         let speed = 0.01;
         const animateGeometry = () => {
+            
             step += speed;
             this.sphere.position.y = 10*Math.abs(Math.sin(step)) + 4;
 
-            // Render
-            renderer.render(scene, camera);
+            // Render.
+            this.renderer.render(this.scene, this.camera);
 
-            // Call animateGeometry again on the next frame
+            // Call animateGeometry again on the next frame.
             window.requestAnimationFrame(animateGeometry);
         };
 
         animateGeometry();
-        }
-   }
+    }
+}
