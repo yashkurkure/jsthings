@@ -5,6 +5,7 @@ import {DataService} from '../data.service';
 import ThreeForceGraph from 'three-forcegraph';
 import data from '../data.json';
 import { animate } from '@angular/animations';
+import SpriteText from 'three-spritetext';
 
 @Component({
   selector: 'app-canvas-box',
@@ -54,9 +55,36 @@ export class CanvasBoxComponent implements OnInit {
             0.1,
             10000
           );
-        this.camera.position.z = Math.cbrt(21) * 180;
+        this.camera.position.z = Math.cbrt(2) * 180;
+
         const graph = new ThreeForceGraph().graphData(data);
         graph.numDimensions(2);
+        graph.nodeThreeObjectExtend(true);
+
+        // const map = data.nodes.map(({name, val, id}) => {
+        //     const sprite = new SpriteText(name)
+        //     sprite.textHeight = 6;
+        //     sprite.position.y = -8
+        //     return sprite
+        // })
+
+        const map = new Map(data.nodes.map((obj)=>[obj.id, obj.name]))
+
+
+        graph.nodeThreeObject(node=>{
+            if (typeof node.id == "string"){
+                const sprite = new SpriteText(map.get(node.id))
+                sprite.textHeight = 6;
+                sprite.position.y = -8
+                return sprite
+            }
+            else {
+                const sprite = new SpriteText("N/A")
+                sprite.textHeight = 6;
+                sprite.position.y = -8
+                return sprite
+            }
+        });
         this.scene.add(graph);
         this.camera.lookAt(graph.position);
         

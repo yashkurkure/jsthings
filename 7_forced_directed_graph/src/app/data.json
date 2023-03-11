@@ -1,47 +1,83 @@
 {
     "nodes": [
-      { "id": "1", "name": "Interests", "val": 64 },
-      { "id": "2", "name": "Music", "val": 32 },
-      { "id": "3", "name": "Graphic Design", "val": 32 },
-      { "id": "4", "name": "Coding", "val": 32 },
-      { "id": "5", "name": "Piano", "val": 16 },
-      { "id": "6", "name": "Guitar", "val": 16 },
-      { "id": "7", "name": "Electronic", "val": 16 },
-      { "id": "8", "name": "Procreate", "val": 16 },
-      { "id": "9", "name": "Photoshop", "val": 16 },
-      { "id": "10", "name": "Illustrator", "val": 16 },
-      { "id": "11", "name": "Sketch", "val": 16 },
-      { "id": "12", "name": "React", "val": 16 },
-      { "id": "13", "name": "TypeScript", "val": 16 },
-      { "id": "14", "name": "GraphQL", "val": 16 },
-      { "id": "15", "name": "Firebase", "val": 16 },
-      { "id": "16", "name": "Tailwind CSS", "val": 16 },
-      { "id": "17", "name": "Computer Graphics", "val": 16 },
-      { "id": "18", "name": "Ableton Live", "val": 8 },
-      { "id": "19", "name": "Reason", "val": 8 },
-      { "id": "20", "name": "Phaser", "val": 8 },
-      { "id": "21", "name": "Three.js", "val": 8 }
+        {
+            "id": "1",
+            "name": ".",
+            "val": 0
+        },
+        {
+            "id": "2",
+            "name": "dirtree.py",
+            "val": 1
+        },
+        {
+            "id": "3",
+            "name": "a.txt",
+            "val": 1
+        },
+        {
+            "id": "4",
+            "name": "dir3",
+            "val": 0
+        },
+        {
+            "id": "6",
+            "name": "hello",
+            "val": 1
+        },
+        {
+            "id": "5",
+            "name": "dir1",
+            "val": 0
+        },
+        {
+            "id": "7",
+            "name": "a22.txt",
+            "val": 1
+        },
+        {
+            "id": "8",
+            "name": "dir1.1",
+            "val": 0
+        },
+        {
+            "id": "9",
+            "name": "asd.txt",
+            "val": 1
+        }
     ],
     "links": [
-      { "source": "1", "target": "2" },
-      { "source": "1", "target": "3" },
-      { "source": "1", "target": "4" },
-      { "source": "2", "target": "5" },
-      { "source": "2", "target": "6" },
-      { "source": "2", "target": "7" },
-      { "source": "3", "target": "8" },
-      { "source": "3", "target": "9" },
-      { "source": "3", "target": "10" },
-      { "source": "3", "target": "11" },
-      { "source": "4", "target": "12" },
-      { "source": "4", "target": "13" },
-      { "source": "4", "target": "14" },
-      { "source": "4", "target": "15" },
-      { "source": "4", "target": "16" },
-      { "source": "4", "target": "17" },
-      { "source": "7", "target": "18" },
-      { "source": "7", "target": "19" },
-      { "source": "17", "target": "20" },
-      { "source": "17", "target": "21" }
+        {
+            "source": "1",
+            "target": "2"
+        },
+        {
+            "source": "1",
+            "target": "3"
+        },
+        {
+            "source": "1",
+            "target": "4"
+        },
+        {
+            "source": "4",
+            "target": "6"
+        },
+        {
+            "source": "1",
+            "target": "5"
+        },
+        {
+            "source": "5",
+            "target": "7"
+        },
+        {
+            "source": "5",
+            "target": "8"
+        },
+        {
+            "source": "8",
+            "target": "9"
+        }
     ]
-  }
+}
