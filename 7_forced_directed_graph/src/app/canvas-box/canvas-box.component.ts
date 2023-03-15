@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import {DataService} from '../data.service';
 import ThreeForceGraph from 'three-forcegraph';
 import data from '../data.json';
-import { animate } from '@angular/animations';
 import SpriteText from 'three-spritetext';
 
 @Component({
@@ -60,13 +58,6 @@ export class CanvasBoxComponent implements OnInit {
         const graph = new ThreeForceGraph().graphData(data);
         graph.numDimensions(2);
         graph.nodeThreeObjectExtend(true);
-
-        // const map = data.nodes.map(({name, val, id}) => {
-        //     const sprite = new SpriteText(name)
-        //     sprite.textHeight = 6;
-        //     sprite.position.y = -8
-        //     return sprite
-        // })
 
         const map = new Map(data.nodes.map((obj)=>[obj.id, obj.name]))
 
