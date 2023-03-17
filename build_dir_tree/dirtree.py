@@ -38,7 +38,6 @@ def main():
             { "id": "1", "name": ".", "val": 0 },
         ], 
         "links" : [
-
         ]
     }
     generateTree(".", tree, 2, 1)
