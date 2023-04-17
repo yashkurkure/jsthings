@@ -1,2 +1,3 @@
-# Three JS tutorials
+# JS
 
+A collection of JS realted things
